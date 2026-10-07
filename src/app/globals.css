@@ -1,0 +1,470 @@
+@import "tailwindcss";
+
+/*
+  FOREX VISION PROS — DERIV SNIPER AI
+  Surface: anodised graphite instrument housing (rack-mounted market terminal).
+  Anchor hue: instrument amber #F5A524 (backlit legend plates of avionics panels).
+*/
+
+:root {
+  --housing: #0b1014;
+  --panel: #121a20;
+  --bezel: #182229;
+  --hairline: #243139;
+  --hairline-soft: #1b252c;
+  --ink: #c7d4da;
+  --ink-strong: #e8f1f4;
+  --muted: #7e9099;
+  --amber: #f5a524;
+  --amber-dim: #a06f17;
+  --buy: #2bd98a;
+  --sell: #ff5a5a;
+  --shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.9);
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--housing);
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(245, 165, 36, 0.07), transparent 60%),
+    linear-gradient(180deg, #0c1216 0%, var(--housing) 40%, #090d11 100%);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.display {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink-strong);
+  margin: 0;
+}
+
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------------------------------------------------------- panel language */
+.band {
+  position: relative;
+  border-top: 1px solid var(--hairline);
+  background: linear-gradient(180deg, rgba(24, 34, 41, 0.55) 0%, rgba(14, 20, 25, 0.55) 100%);
+  padding: 22px 16px 26px;
+}
+.band:first-of-type {
+  border-top: none;
+}
+.band-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.legend {
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.legend-muted {
+  color: var(--muted);
+}
+
+.plate {
+  background: linear-gradient(180deg, var(--bezel) 0%, #131c22 100%);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 30%);
+  pointer-events: none;
+}
+
+.readout {
+  padding: 10px 12px;
+  border-left: 2px solid var(--amber-dim);
+  background: rgba(255, 255, 255, 0.014);
+}
+.readout-value {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink-strong);
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+
+.hairline {
+  height: 1px;
+  background: var(--hairline);
+  border: 0;
+}
+
+/* --------------------------------------------------------------- controls */
+.btn {
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 11px 14px;
+  border-radius: 2px;
+  border: 1px solid var(--hairline);
+  background: #162027;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 160ms cubic-bezier(0.2, 0.7, 0.3, 1), color 160ms, border-color 160ms, transform 120ms;
+  min-height: 44px;
+}
+.btn:hover {
+  border-color: var(--amber);
+  color: var(--ink-strong);
+  background: #1c262d;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+.btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+.btn-amber {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #17120a;
+}
+.btn-amber:hover {
+  background: #ffb641;
+  color: #17120a;
+}
+.btn-danger {
+  background: #2a1416;
+  border-color: #5c2226;
+  color: #ff8b8b;
+}
+.btn-danger:hover {
+  background: var(--sell);
+  border-color: var(--sell);
+  color: #1a0c0c;
+}
+.btn-buy {
+  background: #10261d;
+  border-color: #1d5c42;
+  color: var(--buy);
+}
+.btn-buy:hover {
+  background: var(--buy);
+  color: #06170f;
+}
+
+.field {
+  width: 100%;
+  background: #0e161b;
+  border: 1px solid var(--hairline);
+  color: var(--ink-strong);
+  border-radius: 2px;
+  padding: 10px 11px;
+  font-family: var(--mono);
+  font-size: 13px;
+  min-height: 42px;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 2px rgba(245, 165, 36, 0.18);
+}
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--amber) 50%),
+    linear-gradient(135deg, var(--amber) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 18px, calc(100% - 12px) 18px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* ------------------------------------------------------------------ pills */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: #101a20;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+.pill-live {
+  color: var(--buy);
+  border-color: rgba(43, 217, 138, 0.35);
+  background: rgba(43, 217, 138, 0.08);
+}
+.pill-warn {
+  color: var(--amber);
+  border-color: rgba(245, 165, 36, 0.35);
+  background: rgba(245, 165, 36, 0.08);
+}
+.pill-danger {
+  color: var(--sell);
+  border-color: rgba(255, 90, 90, 0.35);
+  background: rgba(255, 90, 90, 0.08);
+}
+
+/* --------------------------------------------------------------- verdicts */
+.signal-word {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(3.1rem, 13vw, 6.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.t-buy {
+  color: var(--buy);
+  text-shadow: 0 0 44px rgba(43, 217, 138, 0.28);
+}
+.t-sell {
+  color: var(--sell);
+  text-shadow: 0 0 44px rgba(255, 90, 90, 0.26);
+}
+.t-wait {
+  color: var(--amber);
+  text-shadow: 0 0 44px rgba(245, 165, 36, 0.22);
+}
+
+.check-row {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--hairline-soft);
+  font-size: 12px;
+}
+.check-mark {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 2px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+.check-ok {
+  background: rgba(43, 217, 138, 0.14);
+  color: var(--buy);
+  border: 1px solid rgba(43, 217, 138, 0.35);
+}
+.check-no {
+  background: rgba(255, 90, 90, 0.12);
+  color: var(--sell);
+  border: 1px solid rgba(255, 90, 90, 0.3);
+}
+
+/* ------------------------------------------------------------------ table */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  background: #0f171c;
+}
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+  min-width: 720px;
+}
+table.data th {
+  font-family: var(--display);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--hairline);
+  background: #121b21;
+  position: sticky;
+  top: 0;
+}
+table.data td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--hairline-soft);
+  color: var(--ink);
+  white-space: nowrap;
+}
+table.data tr:hover td {
+  background: rgba(245, 165, 36, 0.05);
+}
+
+.log-line {
+  display: flex;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--hairline-soft);
+  font-size: 11px;
+}
+.log-ts {
+  color: var(--muted);
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------- motion / accents */
+.scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.scan::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, rgba(245, 165, 36, 0.11), transparent);
+  transform: translateX(-120%);
+  animation: sweep 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  60%,
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+.tick-flash {
+  animation: flash 420ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+@keyframes flash {
+  0% {
+    background-color: rgba(245, 165, 36, 0.22);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.stamped {
+  animation: stamp 320ms cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+@keyframes stamp {
+  0% {
+    transform: scale(1.035);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gutter-rule {
+  border-left: 2px solid var(--amber-dim);
+  padding-left: 12px;
+}
+
+.scroll-x {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+}
+.scroll-x > * {
+  scroll-snap-align: start;
+  flex: none;
+}
+.scroll-x::-webkit-scrollbar {
+  height: 4px;
+}
+.scroll-x::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 4px;
+}
+
+.sticky-strip {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(11, 16, 20, 0.94);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOcta[...]
+  mix-blend-mode: overlay;
+}
+
+.texture {
+  background-image: url("/images/panel-texture.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
